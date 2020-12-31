@@ -1,0 +1,133 @@
+
+#include "mt6580-pinfunc.h"
+
+/ {
+	cdfinger:cdfinger@ {
+		compatible = "cdfinger,fps1098";
+		reg = <0>;
+		interrupt-parent = <&eintc>;
+		interrupts = <9 IRQ_TYPE_EDGE_RISING>;
+		debounce = <9 0>;
+		resetgpio = <17 0>;
+		vdd_ldo_enable = <1>;
+		vio_ldo_enable = <0>;
+		config_spi_pin = <1>;
+		spi-max-frequency = <8000000>;
+
+		pinctrl-names = "fingerprint_reset_high",
+			"fingerprint_reset_low",
+			"fingerprint_power_high",
+			"fingerprint_power_low",
+			"fingerprint_vio_high",
+			"fingerprint_vio_low",
+			"fingerprint_spi_miso",
+			"fingerprint_spi_mosi",
+			"fingerprint_spi_sck",
+			"fingerprint_spi_cs",
+			"fingerprint_irq";
+
+		pinctrl-0 = <&fps_reset_high>;
+		pinctrl-1 = <&fps_reset_low>;
+		pinctrl-2 = <&fps_power_on>;
+		pinctrl-3 = <&fps_power_off>;
+		pinctrl-4 = <&fps_vio_on>;
+		pinctrl-5 = <&fps_vio_off>;
+		pinctrl-6 = <&fps_spi_miso>;
+		pinctrl-7 = <&fps_spi_mosi>;
+		pinctrl-8 = <&fps_spi_sck>;
+		pinctrl-9 = <&fps_spi_cs>;
+		pinctrl-10 = <&fps_irq>;
+		status = "okay";
+	};
+};
+
+&pio {
+	fps_reset_high: fps_reset_high {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO17__FUNC_GPIO17>;
+			slew-rate = <1>;
+			bias-disable;
+			output-high;
+		};
+	};
+	fps_reset_low: fps_reset_low {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO17__FUNC_GPIO17>;
+			slew-rate = <1>;
+			bias-disable;
+			output-low;
+		};
+	};
+	fps_power_on: fps_power_on {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO18__FUNC_GPIO18>;
+			slew-rate = <1>;
+			bias-disable;
+			output-high;
+		};
+	};
+	fps_power_off: fps_power_off {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO18__FUNC_GPIO18>;
+			slew-rate = <1>;
+			bias-disable;
+			output-low;
+		};
+	};
+	fps_vio_on: fps_vio_on {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO18__FUNC_GPIO18>;
+			slew-rate = <1>;
+			bias-disable;
+			output-high;
+		};
+	};
+	fps_vio_off: fps_vio_off {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO18__FUNC_GPIO18>;
+			slew-rate = <1>;
+			bias-disable;
+			output-low;
+		};
+	};
+	fps_spi_miso:fps_spi_miso@0{
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO3__FUNC_SPI1_MISO>;
+			slew-rate = <0>;
+			bias-pull-up = <11>;
+			output-low;
+		};
+	};
+	fps_spi_mosi:fps_spi_mosi@0{
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO2__FUNC_SPI1_MOSI>;
+			slew-rate = <1>;
+			bias-pull-up = <11>;
+			output-low;
+		};
+	};
+	fps_spi_sck:fps_spi_sck@0{
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO1__FUNC_SPI1_SCK>;
+			slew-rate = <1>;
+			bias-pull-up = <11>;
+			output-low;
+		};
+	};
+	fps_spi_cs:fps_spi_cs@0{
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO0__FUNC_SPI1_CS>;
+			slew-rate = <1>;
+			bias-pull-up = <11>;
+			output-low;
+		};
+	};
+	fps_irq: fps_irq {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO9__FUNC_GPIO9>;
+			slew-rate = <0>;
+			bias-disable;
+			output-low;
+		};
+	};
+};

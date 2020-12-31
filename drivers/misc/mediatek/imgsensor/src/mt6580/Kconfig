@@ -1,0 +1,5 @@
+config LCT_CAMERA_INFO
+    bool "Lct camera info and camera otp info"
+    default n
+    help
+      Say Y here if you have the camera info and camera otp info version

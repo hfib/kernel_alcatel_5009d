@@ -1,0 +1,3 @@
+config FLASHLIGHT_AW3640
+	bool CONFIG_FLASHLIGHT_AW3640
+	default n
