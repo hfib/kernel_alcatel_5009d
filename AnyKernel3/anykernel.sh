@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=
+kernel.string=Andromeda by Hf1b @ GitHub
 do.devicecheck=0
 do.modules=0
 do.systemless=1
@@ -20,7 +20,7 @@ supported.patchlevels=
 '; } # end properties
 
 # shell variables
-block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;
+block=/dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=auto;
 
@@ -29,13 +29,9 @@ ramdisk_compression=auto;
 # import patching functions/variables - see for reference
 . tools/ak3-core.sh;
 
-
-## AnyKernel install
-echo "-------------------------"
-echo "- Custom kernel by Hfib -"
-echo "-------------------------"
-
+## AnyKernel boot install
 split_boot;
 
-write_boot;
-## end install
+flash_boot;
+## end boot install
+
